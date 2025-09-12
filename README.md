@@ -27,8 +27,3 @@ If you want the same colors as the screenshot, install [Firefox Color](https://a
 ). This theme also works very well with the [Adaptive Tab Bar Color](https://addons.mozilla.org/en-US/firefox/addon/adaptive-tab-bar-colour) extension.
 
 got help from - [MrOtherGuy](https://github.com/MrOtherGuy/firefox-csshacks)
-
----
-
-If anyone finds any issues, feel free to submit a pull request or contact with me ( 514mdtox@gmail.com ) for any help!
-
