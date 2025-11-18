@@ -17,8 +17,8 @@ cd the/path/you/just/copied
 git clone https://github.com/coolkidmikk/custom-css.git chrome
 ```
 5.  Hide the bookmarks toolbar by pressing Ctrl+Shift+B or right clicking and selecting "Never Show."
-
 6.  Restart your browser for the theme to be applied.
+7.  Use [Fistome](https://addons.mozilla.org/en-US/firefox/addon/fistome/) to get the exact homepage view as shown in the preview video
 
 This theme works very well with the [Adaptive Tab Bar Color](https://addons.mozilla.org/en-US/firefox/addon/adaptive-tab-bar-colour) extension.
 
