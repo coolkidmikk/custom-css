@@ -14,7 +14,7 @@ https://github.com/user-attachments/assets/25dfb2d9-a1bc-4d86-b73f-642a1c8da90c
 4.  Clone this repository inside the profile directory you just copied:
 ```bash
 cd the/path/you/just/copied
-git clone https://github.com/coolkidmikk/My_custom_css.git chrome
+git clone https://github.com/coolkidmikk/custom-css.git chrome
 ```
 5.  Hide the bookmarks toolbar by pressing Ctrl+Shift+B or right clicking and selecting "Never Show."
 
