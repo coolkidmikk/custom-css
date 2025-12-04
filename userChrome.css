@@ -1,306 +1,317 @@
-@font-face {
-  font-family: "JetBrains Mono";            /* Custom font name */
-  src: url("fonts/JetBrainsMono-Bold.woff2") format("woff2"),
-       url("fonts/JetBrainsMono-Bold.woff") format("woff");
-  font-weight: 700;                         /* Bold = 700 */
-  font-style: normal;
+/* NOTE: If your active tab appears slightly left or right of center, adjust the
+`padding-left` value in the "TAB CENTERING" section below (look for
+`padding-left: 60px !important;`). Increase the number to shift tabs left,
+decrease it to shift tabs right.
+
+NOTE: Window control buttons (close, restore, minimize) are hidden in this
+stylesheet. To restore them, remove or comment out the rules near the end of
+the file that set `.titlebar-buttonbox-container`, `.titlebar-buttonbox`,
+`.titlebar-button` to `display: none`.
+*/
+
+/* ========================================================= */
+/*                   CORE CONFIGURATION                      */
+/* ========================================================= */
+
+:root {
+--uc-navbar-transform: -40px;
+--uc-autohide-toolbar-delay: .40s;
+--uc-autohide-toolbar-duration: 200ms;
 }
+:root { --uc-navbar-transform: -34px }
 
 body {
-  font-family: "JetBrains Mono", monospace; /* Apply font to body */
+font-family: "JetBrains Mono", monospace;
 }
 
-
+/* ========================================================= */
+/*                   TAB BAR STYLING                         */
+/* ========================================================= */
 
 .tabbrowser-tab[selected]:not(:hover):not([pinned]) .tab-label-container,
-#tabbrowser-tabs:not([closebuttons="activetab"]) .tabbrowser-tab:not(:hover):not([pinned]) .tab-label-container{
-  padding-inline-end: 6px !important;
+#tabbrowser-tabs:not([closebuttons="activetab"]) .tabbrowser-tab:not(:hover):not([pinned]) .tab-label-container {
+padding-inline-end: 6px !important;
 }
-.tab-icon-stack{
-  margin-inline-start: auto
+.tab-icon-stack {
+margin-inline-start: auto
 }
-.tab-label-container{
-  max-width: min-content;
-  margin-inline-end: auto;
-}
-
-
-
-/* This style hides some information from the extensions-button panel, but makes it appear more compact. Might be useful for someone having lot of extensions */
-
-#unified-extensions-view{
-  --uei-icon-size: 16px;
-}
-.unified-extensions-item-menu-button.subviewbutton{
-  padding: 0px !important;
-  margin-inline-end: 0 !important;
-}
-.unified-extensions-item-action-button.subviewbutton{
-  padding-block: 6px !important;
-}
-.unified-extensions-item-menu-button.subviewbutton > .toolbarbutton-icon{
-  padding: 4px !important;
-}
-.unified-extensions-item-message-deck{
-  display: none
-}
-#unified-extensions-view > vbox > vbox > .unified-extensions-item{
-  padding-block: 0px !important;
-}
-#unified-extensions-panel .unified-extensions-item{
-  margin-block: 0 !important;
+.tab-label-container {
+max-width: min-content;
+margin-inline-end: auto;
 }
 
+/* Hide the "List All Tabs" (down-arrow) button */
+#alltabs-button { display: none !important; }
 
-
-
-/* Always show tab close button on hover and never otherwise */
+/* Show tab close button only while hovering a tab */
 .tabbrowser-tab .tab-close-button {
-  opacity: 0; /* Hide close button by default */
-  transition: opacity 0.3s ease-in-out; /* Smooth transition */
+opacity: 0;
+transition: opacity 0.3s ease-in-out;
 }
-
 .tabbrowser-tab:hover .tab-close-button {
-  opacity: 1; /* Show close button on hover */
+opacity: 1;
 }
 
-
-  
-
-
-
-:root{
-  --uc-navbar-transform: -40px;
-  --uc-autohide-toolbar-delay: .40s;
-  --uc-autohide-toolbar-duration: 200ms;
+/* New tab button: invisible by default, becomes visible when tab bar is hovered */
+#tabs-newtab-button {
+opacity: 0;
+transition: opacity 0.3s ease-in-out;
 }
-:root[uidensity="compact"]{ --uc-navbar-transform: -34px }
-
-#navigator-toolbox > div{ display: contents; }
-:root[sessionrestored] :where(#nav-bar,#PersonalToolbar,#tab-notification-deck,.global-notificationbox){
-  transform: translateY(var(--uc-navbar-transform))
-}
-:root:is([customizing],[chromehidden*="toolbar"]) :where(#nav-bar,#PersonalToolbar,#tab-notification-deck,.global-notificationbox){
-  transform: none !important;
-  opacity: 1 !important;
+#tabbrowser-tabs:hover #tabs-newtab-button {
+opacity: 1 !important;
 }
 
-#nav-bar:not([customizing]){
-  opacity: 0;
-  transition:  transform var(--uc-autohide-toolbar-duration) ease var(--uc-autohide-toolbar-delay), opacity var(--uc-autohide-toolbar-duration) ease var(--uc-autohide-toolbar-delay) !important;
-  position: relative;
-  z-index: 2;
-}
-#titlebar{ position: relative; z-index: 3 }
+/* ========================================================= 
+                    TAB CENTERING                            
 
+Center the tabs inside the scrollbox. If the active tab is off-center,
+change the `padding-left` value below to nudge the whole tab row so the
+active tab aligns visually in the middle of the window.
+
+   ========================================================= */
+
+scrollbox[smoothscroll="true"] > slot {
+display: contents !important;
+}
+
+scrollbox[smoothscroll="true"] {
+justify-content: center !important;
+padding-left: 60px !important; # Edit this value to center your tab if its not in the middle
+}
+
+/* ========================================================= */
+/*                  EXTENSIONS PANEL                         */
+/* ========================================================= */
+
+#unified-extensions-view {
+--uei-icon-size: 16px;
+}
+.unified-extensions-item-menu-button.subviewbutton {
+padding: 0px !important;
+margin-inline-end: 0 !important;
+}
+.unified-extensions-item-action-button.subviewbutton {
+padding-block: 6px !important;
+}
+.unified-extensions-item-menu-button.subviewbutton > .toolbarbutton-icon {
+padding: 4px !important;
+}
+.unified-extensions-item-message-deck {
+display: none
+}
+#unified-extensions-view > vbox > vbox > .unified-extensions-item {
+padding-block: 0px !important;
+}
+#unified-extensions-panel .unified-extensions-item {
+margin-block: 0 !important;
+}
+
+/* ========================================================= 
+                    AUTOHIDE & FLOATING BAR                  
+
+Auto-hide the main navigation toolbar and make it appear when the
+titlebar, nav-bar, or related elements are hovered or focused.
+
+   ========================================================= */
+
+#navigator-toolbox > div { display: contents; }
+
+/* Remove faint divider under the toolbox */
+#navigator-toolbox {
+border-bottom: none !important;
+}
+
+:root :where(#nav-bar,#PersonalToolbar,#tab-notification-deck,.global-notificationbox) {
+transform: translateY(var(--uc-navbar-transform))
+}
+:root:is([customizing],[chromehidden*="toolbar"]) :where(#nav-bar,#PersonalToolbar,#tab-notification-deck,.global-notificationbox) {
+transform: none !important;
+opacity: 1 !important;
+}
+
+/* NAV BAR: floating visual style and sizing */
+#nav-bar:not([customizing]) {
+opacity: 0;
+transition: transform var(--uc-autohide-toolbar-duration) ease var(--uc-autohide-toolbar-delay), opacity var(--uc-autohide-toolbar-duration) ease var(--uc-autohide-toolbar-delay) !important;
+
+/* 'relative' keeps top/margin settings effective */
+position: relative !important;
+top: -1%; /* Gap between tab and search-bar */
+margin-left: 25%;
+margin-right: 25%;
+z-index: 2;
+
+/* Visuals: rounded, subtle border, accent background */
+border-top: none !important;
+border-radius: 10px;
+border: 1px solid var(--tab-selected-bgcolor) !important;
+background: var(--lwt-accent-color) !important;
+overflow: visible !important;
+}
+
+/* Responsive fallbacks for narrower windows */
+@media (max-width: 1100px) {
+#nav-bar { left: 0%; right: 0%; margin-left: 0% !important; margin-right: 0% !important; }
+}
+@media (max-width: 800px) {
+#nav-bar { left: 30px; right: 30px; margin-left: 30px; margin-right: 30px; }
+}
+
+/* Invisible area above nav-bar to prevent visual flicker when showing/hiding */
+#nav-bar::after {
+content: "";
+position: absolute;
+width: 100%;
+height: 40px; /* Increased coverage to reduce flicker */
+top: -40px;
+left: 0;
+pointer-events: none !important;
+}
+
+/* Show the bar when the toolbox or titlebar receive focus/hover */
+#navigator-toolbox:focus-within > .browser-toolbar {
+transform: translateY(0);
+opacity: 1;
+transition-duration: var(--uc-autohide-toolbar-duration), var(--uc-autohide-toolbar-duration) !important;
+transition-delay: 0s !important;
+}
+
+#titlebar:hover ~ .browser-toolbar,
+.browser-titlebar:hover ~ :is(#nav-bar,#PersonalToolbar),
+#nav-bar:hover,
+#nav-bar:hover + #PersonalToolbar {
+transform: translateY(0);
+opacity: 1;
+transition-duration: var(--uc-autohide-toolbar-duration), var(--uc-autohide-toolbar-duration) !important;
+transition-delay: 0s !important;
+}
+
+/* Keep toolbar visible while any top-level menu or panel is open */
+#mainPopupSet:has(> panel[panelopen="true"]) ~ #navigator-toolbox > #nav-bar,
+#mainPopupSet:has(> menu[open="true"]) ~ #navigator-toolbox > #nav-bar {
+transform: translateY(0) !important;
+opacity: 1 !important;
+transition-delay: 0s !important;
+}
+
+/* URL bar popup behavior while nav-bar is hidden */
+:root #urlbar[popover] {
+opacity: 0;
+pointer-events: none;
+transition: transform var(--uc-autohide-toolbar-duration) ease var(--uc-autohide-toolbar-delay), opacity var(--uc-autohide-toolbar-duration) ease var(--uc-autohide-toolbar-delay);
+transform: translateY(var(--uc-navbar-transform));
+}
+
+#mainPopupSet:has(> [panelopen]:not(#ask-chat-shortcuts,#tab-preview-panel)) ~ toolbox #urlbar[popover],
+.browser-titlebar:is(:hover,:focus-within) ~ #nav-bar #urlbar[popover],
+#nav-bar:is(:hover,:focus-within) #urlbar[popover],
+#urlbar-container > #urlbar[popover]:is([focused],[open]) {
+opacity: 1;
+pointer-events: auto;
+transition-delay: 0ms;
+transform: translateY(0);
+}
+
+#urlbar-container > #urlbar[popover]:is([focused],[open]) {
+transition-duration: 1ms;
+}
+
+#mainPopupSet:has(> [panelopen]:not(#ask-chat-shortcuts,#tab-preview-panel)) ~ #navigator-toolbox > .browser-toolbar {
+transition-delay: 100ms !important;
+transform: translateY(0);
+opacity: 1;
+}
+
+#nav-bar.browser-titlebar {
+background: inherit;
+backdrop-filter: blur(10px);
+}
+#toolbar-menubar:not([autohide="true"]) ~ #nav-bar.browser-titlebar {
+background-position-y: -28px;
+border-top: none !important;
+}
+#PersonalToolbar { transition: transform var(--uc-autohide-toolbar-duration) ease var(--uc-autohide-toolbar-delay) !important; position: relative; z-index: 1 }
+:root:not([inFullscreen],[chromehidden~="toolbar"]) > body > #browser { margin-top: var(--uc-navbar-transform); }
+
+/* ========================================================= 
+                 CLEANUP (ICONS & BUTTONS)                   
+
+Hide unneeded toolbar buttons and extra UI elements to keep the
+navigation area minimal.
+
+  ========================================================= */
+
+#reader-mode-button,
+#star-button-box,
+#nav-bar-overflow-button,
+#save-to-pocket-button,
+#tracking-protection-icon-container {
+display: none !important;
+}
+
+/* If you want the visual New Tab (+) button back, remove the block below.
+Note: restoring the icon may shift the tab row; if that happens, re-adjust
+the `padding-left` in the TAB CENTERING section. */
+
+/* ----------------------------------------------------------------------------- */
+/* Special care for the New Tab Button (+): keep the button element for
+interaction but hide the visible plus icon so it does not change layout */
+#tabs-newtab-button,
+#tabbrowser-tabs .tabs-newtab-button {
+background: transparent !important;
+border: none !important;
+color: transparent !important;
+padding: 0 !important;
+min-width: 22px !important;    /* keep a tappable area */
+width: 22px !important;
+height: 26px !important;       /* match your tab height if needed */
+pointer-events: auto !important;
+}
+
+/* hide the plus icon itself but keep the button area functional */
+#tabs-newtab-button > .toolbarbutton-icon,
+#tabbrowser-tabs .tabs-newtab-button > .toolbarbutton-icon {
+display: none !important;
+}
+
+/* ------------------------------------------------------------------------------ */
+
+/* Search box sizing limits (keeps URL bar compact) */
+#urlbar-container {
+max-width: 235px !important;
+min-width: 100px !important;
+margin: 0 !important;
+}
+
+/* Window titlebar stacking and z-index tweaks */
+#titlebar { position: relative; z-index: 3 }
 #navigator-toolbox,
 #sidebar-box,
 #sidebar-main,
 #sidebar-splitter,
-#tabbrowser-tabbox{
-  z-index: auto !important;
-}
-#navigator-toolbox:focus-within > .browser-toolbar{
-  transform: translateY(0);
-  opacity: 1;
-  transition-duration: var(--uc-autohide-toolbar-duration), var(--uc-autohide-toolbar-duration) !important;
-  transition-delay: 0s !important;
-}
-#titlebar:hover ~ .browser-toolbar,
-.browser-titlebar:hover ~ :is(#nav-bar,#PersonalToolbar),
-#nav-bar:hover,
-#nav-bar:hover + #PersonalToolbar{
-  transform: translateY(0);
-  opacity: 1;
-  transition-duration: var(--uc-autohide-toolbar-duration), var(--uc-autohide-toolbar-duration) !important;
-  transition-delay: 0s !important;
-}
-:root[sessionrestored] #urlbar[popover]{
-  opacity: 0;
-  pointer-events: none;
-  transition: transform var(--uc-autohide-toolbar-duration) ease var(--uc-autohide-toolbar-delay), opacity var(--uc-autohide-toolbar-duration) ease var(--uc-autohide-toolbar-delay);
-  transform: translateY(var(--uc-navbar-transform));
-}
-#mainPopupSet:has(> [panelopen]:not(#ask-chat-shortcuts,#tab-preview-panel)) ~ toolbox #urlbar[popover],
-.browser-titlebar:is(:hover,:focus-within) ~ #nav-bar #urlbar[popover],
-#nav-bar:is(:hover,:focus-within) #urlbar[popover],
-#urlbar-container > #urlbar[popover]:is([focused],[open]){
-  opacity: 1;
-  pointer-events: auto;
-  transition-delay: 0ms;
-  transform: translateY(0);
-}
-#urlbar-container > #urlbar[popover]:is([focused],[open]){
- transition-duration: 1ms;
-}
-#mainPopupSet:has(> [panelopen]:not(#ask-chat-shortcuts,#tab-preview-panel)) ~ #navigator-toolbox > .browser-toolbar{
-  transition-delay: 100ms !important;
-  transform: translateY(0);
-  opacity: 1;
-}
-#nav-bar.browser-titlebar{
-  background: inherit;
-  backdrop-filter: blur(10px); /* Makes the toolbar blurry/transparent */
-}
-#toolbar-menubar:not([autohide="true"]) ~ #nav-bar.browser-titlebar{
-  background-position-y: -28px;
-  border-top: none !important;
-}
-#PersonalToolbar{ transition: transform var(--uc-autohide-toolbar-duration) ease var(--uc-autohide-toolbar-delay) !important; position: relative; z-index: 1 }
-:root[sessionrestored]:not([inFullscreen],[chromehidden~="toolbar"]) > body > #browser{ margin-top: var(--uc-navbar-transform); }
-
-/* Hide the "Toggle Reader View" and "Bookmark This Page" icons */
-#reader-mode-button,
-#star-button-box {
-  display: none !important;
+#tabbrowser-tabbox {
+z-index: auto !important;
 }
 
-#nav-bar-overflow-button {
-  display: none !important;
+/* ========================================================= 
+                 WINDOW CONTROLS (HIDE / SHOW)               
+
+The following rules completely hide the titlebar control buttons (close,
+minimize, maximize). Remove or comment these rules if you want those
+buttons visible again.
+
+   ========================================================= */
+
+/* COMPLETELY HIDE WINDOW CONTROLS (The X button) */
+.titlebar-buttonbox-container,
+.titlebar-buttonbox {
+display: none !important;
+}
+/* Also hide specific individual buttons if they persist */
+.titlebar-button {
+display: none !important;
 }
 
-
-/* Resize and center the search box */
-#urlbar-container {
-  max-width: 235px !important;
-  min-width: 100px !important;
-  margin: 0 !important;
+:root[sessionrestored]:not([inFullscreen],[chromehidden~="toolbar"]) > body > #browser {
+  margin-top: -43.9px !important; /* This is necessary for margin */
 }
-
-/* Hide the Pocket icon in the address bar */
-#save-to-pocket-button { display: none !important; }
-
-/* Hide the "List All Tabs" button from the tab bar */
-#alltabs-button { display: none !important; }
-
-/* Hide the shield button (Tracking Protection) */
-#tracking-protection-icon-container {
-    display: none !important;
-}
-
-
-
-
-
-
-/* Move the "Open Application Menu" icon to the rightmost position in the tab bar */
-
-#nav-bar {
-    margin-left: 25%;
-    margin-right: 25%;
-}
-
-
-
-/* Make the navigation toolbar a flex container with center alignment */
-#nav-bar {
-  position: default !important;
-	top: 4.5%;
-
-	@media (max-width: 1100px) {
-		left: 0%;
-		right: 0%;
-	}
-
-	@media (max-width: 800px) {
-		left: 30px;
-		right: 30px;
-	}
-
-	z-index: 1;
-	transition: top 0.3s cubic-bezier(0.270, 0.910, 0.435, 1.280),
-	opacity 0.1s ease !important;
-	border-top: none !important;
-	border-radius: 10px;
-	border: 1px solid var(--tab-selected-bgcolor) !important;
-	background: var(--lwt-accent-color) !important;
-	opacity: 0;
-	overflow: visible !important;
-	
-  &::after {
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 1rem;
-    top: -1rem;
-  }
-
-}
-/*center the tabs*/
-scrollbox[smoothscroll="true"] > slot {
-  display: contents !important;
-}
-
-scrollbox[smoothscroll="true"] {
-  justify-content: center !important;
-  padding-left: 80px !important; /* Adjust this value to shift the tabs slightly to the right */
-}
-
-/*hide open new tab button*/
-#tabs-newtab-button {
-  opacity: 0; /* Hide the button */
-  transition: opacity 0.3s ease-in-out; /* Smooth transition */
-}
-
-.tabbrowser-tab:hover + #tabs-newtab-button {
-  opacity: 1 !important; /* Show the button on hover */
-}
-
-/*traffic light buttons*/
-
-@-moz-document url(chrome://browser/content/browser.xhtml) {
-  /* Hide any built‑in icons or labels */
-  .titlebar-button > image,
-  .titlebar-button > label {
-    display: none !important;
-  }
-  
-  
-  
-}
-
-.titlebar-min {
-    background-color: #ffbd2e !important; /* Yellow for Minimize */
-    order: 0;
-    border-radius: 5px; /* Adjust the roundness */
-    width: 30px; /* Adjust the width */
-    height: 15px; /* Adjust the height */
-}
-
-
-.titlebar-restore {
-    
-  background-color: #28c940 !important; /* Green for Maximize */
-    order: 1;
-    border-radius: 5px; /* Adjust the roundness */
-    width: 30px; /* Adjust the width */
-    height: 15px; /* Adjust the height */
-  }
-
-    
-.titlebar-close {
-     background-color: #ff5f57 !important; /* Red for Close */
-      order: 2; 
-      border-radius: 5px; /* Adjust the roundness */
-      width: 30px; /* Adjust the width */
-      height: 15px; /* Adjust the height */
-    }
-
-
-    .titlebar-buttonbox {
-      position: absolute !important;
-      top: 6px !important;
-      right: 4px !important;
-      gap: 8px !important;
-    }
-  
-    .titlebar-button:hover {
-      filter: brightness(60%);
-    }
-
-
-
-
-
-
-
