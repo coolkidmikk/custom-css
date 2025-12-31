@@ -1,5 +1,5 @@
 #  Animated Custom CSS 
-A minimal Firefox theme with a hidden URL bar and satisfying animations.
+A minimal Firefox theme with a hidden URL bar.
 
 https://github.com/user-attachments/assets/9795d141-8fb8-4281-a7f2-9b67df15193e
 
@@ -7,7 +7,7 @@ https://github.com/user-attachments/assets/9795d141-8fb8-4281-a7f2-9b67df15193e
 This customization is designed specifically for Firefox and Librewolf. It is not compatible with Zen Browser.
 # Installation
 -  Open `about:config` in Firefox and set `toolkit.legacyUserProfileCustomizations.stylesheets` to true.
--  Navigate to about:support and locate the Profile Directory row. Copy the path provided.
+-  Navigate to `about:support` and locate the `Profile Directory` row. Copy the path provided.
 -  Open your terminal, navigate to that directory, and clone this repository into a folder named `chrome`:
 ```bash
 cd the/path/you/just/copied
@@ -22,7 +22,7 @@ git clone https://github.com/coolkidmikk/custom-css.git chrome
 If the URL bar or tabs appear shifted to one side, you must balance the toolbar layout manually:
 -  Remove the Firefox View button from the top-left corner.
 -  Ensure the search box is centered by placing an equal number of icons on both sides (e.g., 4 tools on the left and 4 on the right).
-   Refer to this [example image](assets/example.png). for the ideal layout.
+   Refer to this [example image](assets/example_image.png). for the ideal layout.
 
 This project was fully inspired by [AnimatedFox](https://github.com/remyrf/AnimatedFox), which has since been archived.
 Please note that this userChrome customization is complex and prone to breaking with new Firefox updates. While this theme is functional, it is not perfect and may contain minor bugs.
