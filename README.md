@@ -3,22 +3,27 @@ A minimal Firefox theme with a hidden URL bar and satisfying animations.
 
 https://github.com/user-attachments/assets/9795d141-8fb8-4281-a7f2-9b67df15193e
 
-##  Installation
-Note: Obviously this customization will not work in Zen Browser
--  Enable `toolkit.legacyUserProfileCustomizations.stylesheets` in `about:config`.
--  Go to `about:support` and copy the `profile directory` path.
--  Clone this repository inside the profile directory you just copied:
+# Compatibility
+This customization is designed specifically for Firefox and Librewolf. It is not compatible with Zen Browser.
+# Installation
+-  Open `about:config` in Firefox and set `toolkit.legacyUserProfileCustomizations.stylesheets` to true.
+-  Navigate to about:support and locate the Profile Directory row. Copy the path provided.
+-  Open your terminal, navigate to that directory, and clone this repository into a folder named `chrome`:
 ```bash
 cd the/path/you/just/copied
 git clone https://github.com/coolkidmikk/custom-css.git chrome
 ```
 -  Hide the bookmarks toolbar by pressing Ctrl+Shift+B or right clicking and selecting "Never Show."
--  You MUST have to have this [Adaptive Tab Bar Color](https://addons.mozilla.org/en-US/firefox/addon/adaptive-tab-bar-colour) extension otherwise your `Toolbar` will be transparent and
-   it will be hard to see.
+-  You MUST have to have this [Adaptive Tab Bar Color](https://addons.mozilla.org/en-US/firefox/addon/adaptive-tab-bar-colour) extension. Without this,
+   the toolbar will remain transparent and difficult to read.
+-  Optional Extension: Install [Fistome](https://addons.mozilla.org/en-US/firefox/addon/fistome) to match the homepage view shown in the preview video.   
 -  Restart your browser for the theme to be applied.
--  Now there is a issue you might see, and that is your toolbar or tab is slightly to the left or right. To fix this issue, first 
-   you remove that firefox-view(top left corner). Now the crucial step is to balance both side of you `search-box` same number of 
-   tools(4 on left and 4 on the right is recommended), like this [example photo](assets/example.png).
--  Use [Fistome](https://addons.mozilla.org/en-US/firefox/addon/fistome/) to get the exact homepage view as shown in the preview video
+#  UI Alignment and Balancing
+If the URL bar or tabs appear shifted to one side, you must balance the toolbar layout manually:
+-  Remove the Firefox View button from the top-left corner.
+-  Ensure the search box is centered by placing an equal number of icons on both sides (e.g., 4 tools on the left and 4 on the right).
+   Refer to this [example image](assets/example.png). for the ideal layout.
 
+This project was fully inspired by [AnimatedFox](https://github.com/remyrf/AnimatedFox), which has since been archived.
+Please note that this userChrome customization is complex and prone to breaking with new Firefox updates. While this theme is functional, it is not perfect and may contain minor bugs.
 
