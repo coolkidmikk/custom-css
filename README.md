@@ -22,7 +22,7 @@ git clone https://github.com/coolkidmikk/custom-css.git chrome
 If the URL bar or tabs appear shifted to one side, you must balance the toolbar layout manually:
 -  Remove the Firefox View button from the top-left corner.
 -  Ensure the search box is centered by placing an equal number of icons on both sides (e.g., 4 tools on the left and 4 on the right).
-   Refer to this [example image](assets/example_image.png). for the ideal layout.
+   Refer to this [example image](assets/example_image.png) for the ideal layout.
 
 This project was fully inspired by [AnimatedFox](https://github.com/remyrf/AnimatedFox), which has since been archived.
 Please note that this userChrome customization is complex and prone to breaking with new Firefox updates. While this theme is functional, it is not perfect and may contain minor bugs.
